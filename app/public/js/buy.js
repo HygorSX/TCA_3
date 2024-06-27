@@ -8,3 +8,25 @@ menu.onclick = () => {
     user.classList.toggle('open')
     
 }
+
+function updateUserUI() {
+    const userName = localStorage.getItem('userName');
+    const userElement = document.getElementById('user');
+    const userDropdown = document.getElementById('user-dropdown');
+    
+    if (userName) {
+        userElement.innerHTML = `<i class="ri-user-3-fill"></i> Olá ${userName}`;
+        userElement.href = "#"; // Opcional: você pode alterar o link de redirecionamento
+        userElement.addEventListener('click', function() {
+            userDropdown.classList.toggle('hidden');
+        });
+    } else {
+        userElement.innerHTML = `<i class="ri-user-3-fill"></i> Faça seu login <br>ou registre-se`;
+        userElement.href = "/login";
+    }
+}
+
+// Chame updateUserUI ao carregar a página para verificar se o usuário já está logado
+window.onload = function() {
+    updateUserUI();
+}
